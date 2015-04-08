@@ -1,0 +1,9 @@
+DEPENDENCIES
+  eol-iptables-wrapper
+    path: .
+    metadata: true
+
+GRAPH
+  eol-iptables-wrapper (0.1.2)
+    iptables (>= 0.0.0)
+  iptables (1.0.0)
