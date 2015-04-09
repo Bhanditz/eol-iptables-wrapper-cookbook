@@ -19,6 +19,8 @@
   -A INPUT -p tcp -m tcp --dport 22 -j ACCEPT
 <% end %>
 
+# THis is a test.
+
 # Opening ports wide open (likely to be overridden above)
 <% unless @node[:iptables][:open].nil? %>
   <% @node[:iptables][:open].each do |port| %>
