@@ -3,7 +3,7 @@
 -A INPUT -i eth1 -m state --state RELATED,ESTABLISHED -j ACCEPT
 
 # Opening specific whitelisted services:
-<% if @node[:iptables].has_key?(:whitelist) %>
+<% if @node[:iptables][:whitelist] %>
   <% @node[:iptables][:whitelist].keys.each do |port| %>
     <%# Allow comments: %>
     <% next if port == "_comment" %>
@@ -14,13 +14,13 @@
 <% end %>
 
 # SSH is an exception; if we didn't specify a whitelist, allow all:
-<% unless @node[:iptables].has_key?(:whitelist) &&
-  @node[:iptables][:whitelist].has_key?("22") %>
+<% unless @node[:iptables][:whitelist] &&
+  @node[:iptables][:whitelist]["22"] %>
   -A INPUT -p tcp -m tcp --dport 22 -j ACCEPT
 <% end %>
 
 # Opening ports wide open (likely to be overridden above)
-<% if @node[:iptables].has_key?(:open) %>
+<% if @node[:iptables][:open] %>
   <% @node[:iptables][:open].each do |port| %>
     -A INPUT -p tcp -m tcp --dport <%= port %> -j ACCEPT
   <% end %>
