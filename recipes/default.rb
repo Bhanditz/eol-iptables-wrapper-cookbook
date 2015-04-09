@@ -7,7 +7,7 @@ simple_iptables_rule "ssh" do
 end
 
 # Check for protocols:
-dbag = data_bag_item("iptables", env)
+dbag = data_bag_item("iptables", node.environment)
 node_conf = dbag[node.name]
 
 node_conf["allowed_protocols"].each do |protocol|
