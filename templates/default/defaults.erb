@@ -3,10 +3,10 @@
 -A INPUT -i eth1 -m state --state RELATED,ESTABLISHED -j ACCEPT
 
 # Opening specific whitelisted services:
-<% @node[:iptables][:whitelist].each do |port, addresses| %>
+<% @node[:iptables][:whitelist].keys.each do |port| %>
   <%# Allow comments: %>
   <% next if port == "_comment" %>
-  <% addresses.each do |address| %>
+  <% @node[:iptables][:whitelist][port].each do |address| %>
     -A FWR -p tcp -s <%= address %> --dport <%= port %> -j ACCEPT
   <% end %>
 <% end %>
