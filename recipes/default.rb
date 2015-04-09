@@ -127,6 +127,6 @@ simple_iptables_rule "forward prohibited" do
 end
 
 simple_iptables_policy "INPUT" do
-  policy "REJECT"
+  policy "DROP"
 end
 
