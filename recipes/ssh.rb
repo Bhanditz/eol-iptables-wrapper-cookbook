@@ -1,3 +1,7 @@
+# This was a sample recipe from a tutorial that I followed.
+# 
+# In the end, I chose to do it differently.
+#
 # Have we decided to lock down the node?
 if node[:iptables][:ssh][:addresses].empty?
   # Use the all_ssh rule
@@ -10,3 +14,4 @@ else
   # Disable the all traffic rule
   iptables_rule "all_ssh", :enable => false
 end
+iptables_rule "defaults"
