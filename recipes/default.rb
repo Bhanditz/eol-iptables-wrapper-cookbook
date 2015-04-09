@@ -9,77 +9,78 @@ end
 # Check for protocols:
 
 @node[:iptables][:allow_protocols].each do |protocol|
-  case "http"
+  case protocol
+  when "http"
     simple_iptables_rule "http" do
       rule "--proto tcp --dport 80"
       jump "ACCEPT"
     end
-  case "https"
+  when "https"
     simple_iptables_rule "https" do
       rule "--proto tcp --dport 443"
       jump "ACCEPT"
     end
-  case "http_8080"
+  when "http_8080"
     simple_iptables_rule "http_8080" do
       rule "--proto tcp --dport 8080"
       jump "ACCEPT"
     end
-  case "http_8081"
+  when "http_8081"
     simple_iptables_rule "http_8081" do
       rule "--proto tcp --dport 8081"
       jump "ACCEPT"
     end
-  case "http_8082"
+  when "http_8082"
     simple_iptables_rule "http_8082" do
       rule "--proto tcp --dport 8082"
       jump "ACCEPT"
     end
-  case "http_8083"
+  when "http_8083"
     simple_iptables_rule "http_8083" do
       rule "--proto tcp --dport 8083"
       jump "ACCEPT"
     end
-  case "rsync"
+  when "rsync"
     simple_iptables_rule "rsync" do
       rule "--proto tcp --dport 22"
       jump "ACCEPT"
     end
-  case "redis"
+  when "redis"
     simple_iptables_rule "redis" do
       rule "--proto tcp --dport 6379"
       jump "ACCEPT"
     end
-  case "memcached"
+  when "memcached"
     simple_iptables_rule "memcached" do
       rule "--proto tcp --dport 11211"
       jump "ACCEPT"
     end
-  case "solr"
+  when "solr"
     simple_iptables_rule "solr" do
       rule "--proto tcp --dport 8983"
       jump "ACCEPT"
     end
-  case "rabbit-mq"
+  when "rabbit-mq"
     simple_iptables_rule "rabbit-mq" do
       rule "--proto tcp --dport 5671"
       jump "ACCEPT"
     end
-  case "node.js"
+  when "node.js"
     simple_iptables_rule "node.js" do
       rule "--proto tcp --dport 3000"
       jump "ACCEPT"
     end
-  case "mysql"
+  when "mysql"
     simple_iptables_rule "mysql" do
       rule "--proto tcp --dport 3306"
       jump "ACCEPT"
     end
-  case "sysopia"
+  when "sysopia"
     simple_iptables_rule "sysopia" do
       rule "--proto tcp --dport 9999"
       jump "ACCEPT"
     end
-  case "virtuoso"
+  when "virtuoso"
     simple_iptables_rule "virtuoso" do
       rule ["--proto tcp --dport 1111",
             "--proto tcp --dport 8890"]
