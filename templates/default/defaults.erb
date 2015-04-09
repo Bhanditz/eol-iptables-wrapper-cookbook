@@ -12,6 +12,8 @@
 
 # Opening specific whitelisted services:
 <% @node[:iptables][:whitelist].each do |port, addresses| %>
+  <%# Allow comments: %>
+  <% next if port == "_comment" %>
   <% addresses.each do |address| %>
     -A FWR -p tcp -s <%= address %> --dport <%= port %> -j ACCEPT
   <% end %>
