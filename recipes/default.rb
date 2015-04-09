@@ -8,7 +8,7 @@ end
 
 # Check for protocols:
 
-node["iptables"]["allow_protocols"].each do |protocol|
+node[:iptables][:allow_protocols].each do |protocol|
   case protocol
   when "http"
     simple_iptables_rule "http" do
