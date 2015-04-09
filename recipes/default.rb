@@ -96,7 +96,7 @@ end
 # Some intelligent defaults:
 
 simple_iptables_rule "established" do
-  rule "-m conntrack --ctstate ESTABLISHED,RELATED"
+  rule "-m state --state ESTABLISHED,RELATED"
   jump "ACCEPT"
 end
 
@@ -107,11 +107,6 @@ end
 
 simple_iptables_rule "local" do
   rule "--in-interface lo"
-  jump "ACCEPT"
-end
-
-simple_iptables_rule "conntrack ssh" do
-  rule "--proto tcp --dport 22 -m conntrack --ctstate NEW"
   jump "ACCEPT"
 end
 
