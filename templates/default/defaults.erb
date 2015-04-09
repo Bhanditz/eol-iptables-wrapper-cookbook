@@ -3,11 +3,13 @@
 -A INPUT -i eth1 -m state --state RELATED,ESTABLISHED -j ACCEPT
 
 # Opening specific whitelisted services:
-<% @node[:iptables][:whitelist].keys.each do |port| %>
-  <%# Allow comments: %>
-  <% next if port == "_comment" %>
-  <% @node[:iptables][:whitelist][port].each do |address| %>
-    -A FWR -p tcp -s <%= address %> --dport <%= port %> -j ACCEPT
+<% if @node[:iptables].has_key?(:whitelist) %>
+  <% @node[:iptables][:whitelist].keys.each do |port| %>
+    <%# Allow comments: %>
+    <% next if port == "_comment" %>
+    <% @node[:iptables][:whitelist][port].each do |address| %>
+      -A FWR -p tcp -s <%= address %> --dport <%= port %> -j ACCEPT
+    <% end %>
   <% end %>
 <% end %>
 
