@@ -7,8 +7,10 @@ simple_iptables_rule "ssh" do
 end
 
 # Check for protocols:
+dbag = data_bag_item("iptables", env)
+node_conf = dbag[node.name]
 
-node[:iptables][:allow_protocols].each do |protocol|
+node_conf["allowed_protocols"].each do |protocol|
   case protocol
   when "http"
     simple_iptables_rule "http" do
