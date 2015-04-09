@@ -115,11 +115,11 @@ simple_iptables_rule "prohibited" do
   jump "REJECT"
 end
 
-simple_iptables_rule "forward prohibited" do
-  direction "FORWARD"
-  rule "--reject-with icmp-host-prohibited"
-  jump "REJECT"
-end
+# simple_iptables_rule "forward prohibited" do
+  # direction "FORWARD"
+  # rule "--reject-with icmp-host-prohibited"
+  # jump "REJECT"
+# end
 
 simple_iptables_policy "INPUT" do
   policy "DROP"
